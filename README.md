@@ -30,7 +30,7 @@ A complete automated AppSec solution part of the ThreatWorx proactive security p
 
 - The minimum role required is `Developer` and the minimum scope is `read_repository`
 
-- Access tokens can be created for GitLab Groups as well which allows you to use a single access token for a group of projects / repositories [more](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
+- Access tokens can be created for GitLab Groups as well which allows you to use a single access token for a group of projects / repositories [(learn more)](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
 
 - Remember to copy / store the access token for use later when configuring the app server
 
@@ -48,7 +48,7 @@ A complete automated AppSec solution part of the ThreatWorx proactive security p
 
 - If you are using your enterprise SSL certificates, you can enable SSL verification
 
-- Just like the access token, the webhook can be created for a GitLab group which allows for scanning multiple repositories using a single webhook [more])(https://docs.gitlab.com/ee/user/project/integrations/webhooks.html)
+- Just like the access token, the webhook can be created for a GitLab group which allows for scanning multiple repositories using a single webhook [(learn more)](https://docs.gitlab.com/ee/user/project/integrations/webhooks.html)
 
 ## Install and configure the App Service
 
@@ -89,6 +89,8 @@ docker compose up -d
 > Please be sure to replace it with an appropriate ssl certificate
 
 - Provide required details of your ThreatWorx subscription on the form 
+
+- Provide GitLab user, access token and optional webhook secret
 
 - Select required options for app service and click ``Configure``
 
