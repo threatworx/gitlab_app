@@ -386,6 +386,8 @@
         <input type="password" placeholder="GitLab webhook secret" name="tw_gl_webhook_secret" id="tw_gl_webhook_secret">
         <input type="checkbox" name="show_webhook_secret" onclick="toggle_webhook_secret()">Show</input>
         <span class="help-block">Optional GitLab webhook secret</span>
+	<input type="text" placeholder="Custom secrets file" name="custom_password_file" id="custom_password_file">
+	<span class="help-block">An optional path on the app server to file containing list of custom passwords for secrets scan. Overrides default list of passwords used for secrets scan</span>
     </div>
 </div>
 <!--<button class="btn" onclick="button_clicked()"><strong>Configure</strong></button>-->

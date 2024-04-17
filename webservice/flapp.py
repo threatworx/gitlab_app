@@ -50,6 +50,7 @@ def handle_save_gitlab_app_config():
     sast_enabled = request.values.get('sast_enabled')
     iac_enabled = request.values.get('iac_enabled')
     secrets_enabled = request.values.get('secrets_enabled')
+    custom_password_file = request.values.get('custom_password_file')
     code_sharing_enabled = request.values.get('code_sharing_enabled')
     tw_gl_host = request.values.get('tw_gl_host')
     tw_gl_user = request.values.get('tw_gl_user')
@@ -63,6 +64,7 @@ def handle_save_gitlab_app_config():
     config['gitlab_app']['gitlab_user'] = tw_gl_user
     config['gitlab_app']['gitlab_access_token'] = tw_gl_access_token
     config['gitlab_app']['user_tags'] = tw_user_tags
+    config['gitlab_app']['custom_password_file'] = custom_password_file.strip() if custom_password_file is not None else ""
     config['gitlab_app']['sast_checks_enabled'] = 'true' if sast_enabled == 'yes' else 'false'
     config['gitlab_app']['iac_checks_enabled'] = 'true' if iac_enabled == 'yes' else 'false'
     config['gitlab_app']['secrets_checks_enabled'] = 'true' if secrets_enabled == 'yes' else 'false'

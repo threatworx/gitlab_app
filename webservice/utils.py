@@ -32,6 +32,14 @@ def get_config(force_read = False):
         sys.exit(1)
     config = configparser.ConfigParser()
     config.read(CONFIG_FILE)
+
+    custom_password_file = config["gitlab_app"].get("custom_password_file")
+    if custom_password_file is not None and len(custom_password_file.strip()) > 0:
+        custom_password_file = custom_password_file.strip()
+        if os.path.isfile(custom_password_file) == False:
+            print("Error unable to open custom password file [%s]" % custom_password_file)
+            print("Note custom_password file should be present in GitLab App Config directory")
+            sys.exit(1)
     return config
 
 def write_config(config):
@@ -102,6 +110,10 @@ def discover_repo(repo_url, asset_id, branch):
     # Perform secrets checks if enabled
     if secrets_checks_enabled:
         twigs_cmd = "twigs -v %s --handle '%s' --token '%s' --instance '%s' %s --create_empty_asset --no_scan --run_id gitlab_app repo --repo '%s' --assetid '%s' --assetname '%s' --secrets_scan --check_common_passwords" % (insecure, handle, token, instance, ptags, updated_repo_url, asset_id, asset_id)
+
+        custom_password_file = config["gitlab_app"].get("custom_password_file")
+        if custom_password_file is not None and len(custom_password_file.strip()) > 0:
+            twigs_cmd = twigs_cmd + " --common_passwords_file %s" % custom_password_file.strip()
         if branch is not None:
             twigs_cmd = twigs_cmd + " --branch '%s'" % branch
         if code_sharing == False:
