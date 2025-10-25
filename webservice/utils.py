@@ -62,6 +62,8 @@ def discover_repo(repo_url, asset_id, branch):
     iac_checks_enabled = config['gitlab_app'].getboolean('iac_checks_enabled')
     secrets_checks_enabled = config['gitlab_app'].getboolean('secrets_checks_enabled')
     code_sharing = config['gitlab_app'].getboolean('code_sharing')
+    mask_secrets = config['gitlab_app'].getboolean('mask_secrets')
+    use_trufflehog = config['gitlab_app'].getboolean('use_trufflehog')
     ssl_verification = config['threatworx'].getboolean('ssl_verification', fallback=True)
     insecure = "" if ssl_verification else "--insecure"
     dev_null_device = open(os.devnull, "w")
@@ -110,6 +112,12 @@ def discover_repo(repo_url, asset_id, branch):
     # Perform secrets checks if enabled
     if secrets_checks_enabled:
         twigs_cmd = "twigs -v %s --handle '%s' --token '%s' --instance '%s' %s --create_empty_asset --no_scan --run_id gitlab_app repo --repo '%s' --assetid '%s' --assetname '%s' --secrets_scan --check_common_passwords" % (insecure, handle, token, instance, ptags, updated_repo_url, asset_id, asset_id)
+        # Mask secrets if the app asks
+        if mask_secrets:
+            twigs_cmd = twigs_cmd + " --mask_secret "
+        # Use trufflehog for secrets scan if the app asks
+        if use_trufflehog:
+            twigs_cmd = twigs_cmd + " --use_trufflehog "
 
         custom_password_file = config["gitlab_app"].get("custom_password_file")
         if custom_password_file is not None and len(custom_password_file.strip()) > 0:

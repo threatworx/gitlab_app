@@ -8,6 +8,7 @@ services:
         volumes:
             - ./config:/opt/tw_gitlab_app/config
         restart: on-failure:2
+        pull_policy: always
     watchtower:
         image: containrrr/watchtower
         volumes:

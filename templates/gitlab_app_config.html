@@ -374,6 +374,7 @@
         <label><input type="checkbox" name="iac_enabled" value="yes" > Enable IaC checks</label>
         <label><input type="checkbox" name="secrets_enabled" value="yes" > Enable code secrets checks</label>
         <label><input type="checkbox" name="code_sharing_enabled" value="yes" checked> Share code snippets with ThreatWorx Console as part of findings </label>
+        <label><input type="checkbox" name="mask_secrets" value="yes" checked> Mask secrets in code snippets </label>
         <input type="text" placeholder="User defined asset tags" name="tw_user_tags" id="tw_user_tags" value="">
 	<span class="help-block">Optional comma separated tags you want to assign to discovered assets for search and access control<br>Assets will be auto tagged with GitLab org name</span>
         <input type="text" placeholder="GitLab host FQDN" name="tw_gl_host" id="tw_gl_host" value="gitlab.com">

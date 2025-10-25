@@ -42,6 +42,12 @@ custom_password_file =
 # Allow sharing of code snippets related to code / IaC checks to the ThreatWorx console
 code_sharing = false
 
+# Mask secrets from source code snippets in the ThreatWorx console
+mask_secret = true 
+
+# Use trufflehog for secrets detection instead of the twigs secrets scan
+use_trufflehog = false 
+
 # App internal settings. Typically you don't need to modify these
 discovery_concurrency = 4
 setup_done = false 

@@ -52,6 +52,7 @@ def handle_save_gitlab_app_config():
     secrets_enabled = request.values.get('secrets_enabled')
     custom_password_file = request.values.get('custom_password_file')
     code_sharing_enabled = request.values.get('code_sharing_enabled')
+    mask_secrets = request.values.get('mask_secrets')
     tw_gl_host = request.values.get('tw_gl_host')
     tw_gl_user = request.values.get('tw_gl_user')
     tw_gl_access_token = request.values.get('tw_gl_access_token')
@@ -69,6 +70,7 @@ def handle_save_gitlab_app_config():
     config['gitlab_app']['iac_checks_enabled'] = 'true' if iac_enabled == 'yes' else 'false'
     config['gitlab_app']['secrets_checks_enabled'] = 'true' if secrets_enabled == 'yes' else 'false'
     config['gitlab_app']['code_sharing'] = 'true' if code_sharing_enabled == 'yes' else 'false'
+    config['gitlab_app']['mask_secrets'] = 'true' if mask_secrets == 'yes' else 'false'
     config['gitlab_app']['setup_done'] = 'true'
     config['gitlab_app']['webhook_secret'] = webhook_secret
     utils.write_config(config)
